@@ -7,7 +7,7 @@ const command = {
         .setName('play')
         .setDescription('Plays a sound'),
     async execute(interaction) {
-        // Ensure the command is used in a guild and by a guild member
+        // Ensure the command is used in the specified guild and by a guild member
         if (!(interaction.member instanceof discord_js_1.GuildMember)) {
             return await interaction.reply('This command can only be used in the specified Guild.');
         }
