@@ -60,7 +60,6 @@ for (const folder of commandsFolders) {
             const command = await Promise.resolve(`${filePath}`).then(s => __importStar(require(s)));
             //If the command has both a "data" and "execute" property, add it to the commands Collection
             if ('data' in command && 'execute' in command) {
-                //! command collection is not being populated
                 client.commands.set(command.data.name, command);
             }
             else {
