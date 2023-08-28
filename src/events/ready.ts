@@ -39,12 +39,29 @@ module.exports = {
         console.log(
           `!${messagePrefix}. Notification sent to Discord! ${currentTime}`
         );
+
+        // User ID of the user you want to send a DM to
+        const userID = '678385374195613706';
+
+        // Fetch the user using the provided user ID
+        client.users
+          .fetch(userID)
+          .then((user) => {
+            // Send a direct message to the fetched user
+            return user.send(`${messagePrefix} at ${currentTime}!`);
+          })
+          .then(() => {
+            console.log(`${messagePrefix} at ${currentTime}!`);
+          })
+          .catch((error) => {
+            console.error('Error sending the direct message:', error);
+          });
       });
     }
 
-    handleNotification('/sleep-notification', 'User has fallen asleep');
     handleNotification('/open-notes', 'User has open notes app');
     handleNotification('/open-instagram', 'User has open Instagram');
+    handleNotification('/sleep-notification', 'User has fallen asleep');
 
     app.listen(PORT, () => {
       console.log(`⚡️[server]: Server is running at http://localhost:${PORT}`);

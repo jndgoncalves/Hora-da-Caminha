@@ -42,6 +42,7 @@ for (const folder of commandsFolders) {
 
       //If the command has both a "data" and "execute" property, add it to the commands Collection
       if ('data' in command && 'execute' in command) {
+        //! command collection is not being populated
         client.commands.set(command.data.name, command);
       } else {
         // If the command is missing a "data" or "execute" property, log a warning
