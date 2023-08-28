@@ -1,19 +1,6 @@
-# Super Doraemon - Discord Sound Bot
+# Sleep Tight - Discord Bot
 
-A Discord bot designed to join a voice channel that a user has joined and play a specific sound. This bot enhances server interactions by providing a fun and interactive audio experience for users.
-
-## Join Our Discord Guild
-
-If you have questions, suggestions, or just want to chat with us, join our Discord guild:
-
-[![Discord](https://img.shields.io/discord/1134812035620798515?color=7289da&label=Discord&logo=discord&logoColor=white)](https://discord.gg/kyJwF2RcPt)
-
-
-### Demonstration Video
-
-Click on the image below to watch a demonstration of the Discord bot on YouTube:
-
-[![Watch the video](https://img.youtube.com/vi/z3NlAQ4b2Fc/maxresdefault.jpg)](https://www.youtube.com/watch?v=z3NlAQ4b2Fc)
+A Discord bot designed to join a voice channel that a certain user has fallen asleep by joining and play a specific sound. This bot enhances server interactions by providing a fun and interactive audio experience for users.
 
 ## Table of Contents
 
@@ -44,7 +31,7 @@ Click on the image below to watch a demonstration of the Discord bot on YouTube:
 1. **Clone the Repository**
 
    ```bash
-   git clone https://github.com/jndgoncalves/discord-bot.git
+   git clone https://github.com/jndgoncalves/SleepTight-discord-bot
    ```
 
 2. **Navigate to the Directory**
