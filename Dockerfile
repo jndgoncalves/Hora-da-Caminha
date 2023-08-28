@@ -20,7 +20,7 @@ RUN npm install --only=dev
 RUN npm install -g nodemon
 
 # Start the bot using nodemon and enable debugging
-CMD nodemon --inspect=0.0.0.0 dist/bot.js
+CMD nodemon --inspect=0.0.0.0:9230 dist/bot.js
 
 # Debug deploy-commands.js
 #CMD nodemon --inspect=0.0.0.0 dist/deploy-commands.js

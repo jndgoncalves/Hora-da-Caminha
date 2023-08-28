@@ -8,7 +8,7 @@
     "start": "nodemon -e js,ts src/bot.ts",
     "prestart": "npm run build",
     "build": "tsc",
-    "debug": "node --inspect-brk=0.0.0.0:9229 -r ts-node/register src/bot.ts"
+    "debug": "node --inspect-brk=0.0.0.0:9230 -r ts-node/register src/bot.ts"
   },
   "keywords": [],
   "author": "Zikmix",

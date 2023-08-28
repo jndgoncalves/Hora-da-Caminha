@@ -10,7 +10,7 @@ module.exports = {
   // Function to execute when the ClientReady event is triggered
   execute(client = new SuperDoraemonClient()) {
     const app = express();
-    const PORT = 3000;
+    const PORT = 3001;
     const CHANNEL_ID = '1134812036673572889';
 
     // Log a message to the console indicating the bot's username and tag when it's successfully logged in
