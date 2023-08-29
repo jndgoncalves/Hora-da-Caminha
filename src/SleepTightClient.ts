@@ -3,7 +3,7 @@ import { Client, Collection, GatewayIntentBits, Partials } from 'discord.js';
 import { Command } from './interfaces';
 
 // Define the SuperDoraemonClient class that extends the Client class from discord.js
-export default class SuperDoraemonClient extends Client {
+export default class SleepTightClient extends Client {
   // Declare a public property 'commands' which is a collection of commands
   public commands: Collection<string, Command>;
 

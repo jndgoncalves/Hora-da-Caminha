@@ -1,14 +1,14 @@
 import dotenv from 'dotenv';
 import { Collection } from 'discord.js';
-import SuperDoraemonClient from './SuperDoraemonClient';
+import SleepTightClient from './SleepTightClient';
 import path from 'node:path';
 import fs from 'node:fs';
 
 // Load environment variables from .env file
 dotenv.config();
 
-// Create a new instance of SuperDoraemonClient
-const client = new SuperDoraemonClient();
+// Create a new instance of SleepTightClient
+const client = new SleepTightClient();
 
 // Initialize a new Collection to store commands
 client.commands = new Collection();

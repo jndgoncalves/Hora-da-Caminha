@@ -1,6 +1,6 @@
 import { Events, CommandInteraction } from 'discord.js';
-// Import the custom SuperDoraemonClient class
-import SuperDoraemonClient from '../SuperDoraemonClient';
+// Import the custom SleepTightClient class
+import SleepTightClient from '../SleepTightClient';
 
 module.exports = {
   name: Events.InteractionCreate,
@@ -11,7 +11,7 @@ module.exports = {
     // If not, exit the function early
     if (!(interaction instanceof CommandInteraction)) return;
 
-    const client = interaction.client as SuperDoraemonClient;
+    const client = interaction.client as SleepTightClient;
 
     // Retrieve the command from the client's command collection using the command name from the interaction
     const command = client.commands.get(interaction.commandName);

@@ -1,11 +1,6 @@
 import { VoiceState } from 'discord.js';
-import {
-  AudioPlayerStatus,
-  createAudioPlayer,
-  createAudioResource,
-  joinVoiceChannel,
-} from '@discordjs/voice';
-import fs from 'fs';
+import { playAudio } from '../utils/audioUtils';
+import { joinVoiceChannel } from '@discordjs/voice';
 
 module.exports = {
   name: 'voiceStateUpdate',
@@ -24,21 +19,10 @@ module.exports = {
         adapterCreator: newState.guild.voiceAdapterCreator,
       });
 
-      // Create a new audio player instance
-      const player = createAudioPlayer();
-      // Create an audio resource from the specified MP3 file using a readable stream
-      const resource = createAudioResource(
-        fs.createReadStream('./public/sounds/welcome-traveler.mp3')
-      );
+      // Use thr plauAudio() function to play an MP3 file
+      // playAudio(connection, './public/sounds/welcome-traveler.mp3');
 
-      // Subscribe the connection to the audio player, allowing audio to be played in the voice channel
-      connection.subscribe(player);
-      player.play(resource);
-
-      // Listen for the 'Idle' event on the audio player, which indicates that audio playback has finished
-      player.on(AudioPlayerStatus.Idle, () => {
-        connection.disconnect();
-      });
+      
 
       // Disconnect after 5 seconds
       // setTimeout(() => {
