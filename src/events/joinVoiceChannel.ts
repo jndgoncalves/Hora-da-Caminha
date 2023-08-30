@@ -1,6 +1,6 @@
 import { VoiceState } from 'discord.js';
 import { playAudio } from '../utils/audioUtils';
-import { joinVoiceChannel } from '@discordjs/voice';
+import { connectToVoiceChannel } from '../utils/voiceChannelUtils';
 
 module.exports = {
   name: 'voiceStateUpdate',
@@ -13,17 +13,9 @@ module.exports = {
     // Check if the user has joined a voice channel (not just switched channels)
     if (!oldState.channelId && newState.channelId) {
       // Join the voice channel the user has entered
-      const connection = joinVoiceChannel({
-        channelId: newState.channelId,
-        guildId: newState.guild.id,
-        adapterCreator: newState.guild.voiceAdapterCreator,
-      });
-
-      // Use thr plauAudio() function to play an MP3 file
-      // playAudio(connection, './public/sounds/welcome-traveler.mp3');
-
-      
-
+      // const connection = connectToVoiceChannel(newState);
+      // Use thr playAudio() function to play an MP3 file
+      // playAudio(connection, './public/sounds/dormebem.mp3');
       // Disconnect after 5 seconds
       // setTimeout(() => {
       //   connection.disconnect();

@@ -1,14 +1,11 @@
-import SleepTightClient from '../../SleepTightClient';
+import { Channel, TextChannel } from 'discord.js';
 
-export function sendChannelMessage(
-  SleepTightClient: SleepTightClient,
-  ChannelID: string,
-  message: string,
-  currentTime: string
-) {
+export function sendChannelMessage(channel: Channel, message: string) {
   // Fetch the specified Discord text channel using its ID.
-  const textChannel = SleepTightClient.channels.cache.get(ChannelID);
-  if (textChannel?.isTextBased()) {
-    textChannel.send(`${message} at ${currentTime}!`);
+
+  if (!(channel instanceof TextChannel)) {
+    console.error(`Channel  is not a text channel or not found.`);
+  } else {
+    if (channel.isTextBased()) channel.send(`${message}!`);
   }
 }

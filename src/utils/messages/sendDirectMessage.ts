@@ -12,7 +12,7 @@ export function sendDirectMessage(
     .fetch(userID)
     .then((user) => {
       // Send a direct message to the fetched user
-      return user.send(`${messagePrefix} at ${currentTime}!`);
+      return user.send(`${messagePrefix}!`);
     })
     .then(() => {
       console.log(`${messagePrefix} at ${currentTime}!`);

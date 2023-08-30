@@ -28,13 +28,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const dotenv_1 = __importDefault(require("dotenv"));
 const discord_js_1 = require("discord.js");
-const SuperDoraemonClient_1 = __importDefault(require("./SuperDoraemonClient"));
+const SleepTightClient_1 = __importDefault(require("./SleepTightClient"));
 const node_path_1 = __importDefault(require("node:path"));
 const node_fs_1 = __importDefault(require("node:fs"));
 // Load environment variables from .env file
 dotenv_1.default.config();
-// Create a new instance of SuperDoraemonClient
-const client = new SuperDoraemonClient_1.default();
+// Create a new instance of SleepTightClient
+const client = new SleepTightClient_1.default();
 // Initialize a new Collection to store commands
 client.commands = new discord_js_1.Collection();
 // Define the path to the commands folder
