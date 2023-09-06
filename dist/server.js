@@ -8,7 +8,7 @@ const handlerNotification_1 = require("./utils/handlerNotification");
 const express_1 = __importDefault(require("express"));
 function startServer(SleepTightClient) {
     const app = (0, express_1.default)();
-    const PORT = 3001;
+    const { PORT } = process.env;
     (0, handlerNotification_1.handlerNotification)(app, SleepTightClient);
     app.listen(PORT, () => {
         console.log(`⚡️[server]: Server is running at http://localhost:${PORT}`);

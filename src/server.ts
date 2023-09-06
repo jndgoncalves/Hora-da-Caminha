@@ -4,8 +4,7 @@ import express from 'express';
 
 export function startServer(SleepTightClient: SleepTightClient) {
   const app = express();
-  const PORT = 3001;
-
+  const { PORT } = process.env;
   handlerNotification(app, SleepTightClient);
 
   app.listen(PORT, () => {

@@ -27,7 +27,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const dotenv_1 = __importDefault(require("dotenv"));
-const discord_js_1 = require("discord.js");
 const SleepTightClient_1 = __importDefault(require("./SleepTightClient"));
 const node_path_1 = __importDefault(require("node:path"));
 const node_fs_1 = __importDefault(require("node:fs"));
@@ -35,40 +34,6 @@ const node_fs_1 = __importDefault(require("node:fs"));
 dotenv_1.default.config();
 // Create a new instance of SleepTightClient
 const client = new SleepTightClient_1.default();
-// Initialize a new Collection to store commands
-client.commands = new discord_js_1.Collection();
-// Define the path to the commands folder
-const foldersPath = node_path_1.default.join(__dirname, 'commands');
-// Read the names of all folders in the commands folder
-const commandsFolders = node_fs_1.default.readdirSync(foldersPath);
-// Loop over each folder in the commands folder
-for (const folder of commandsFolders) {
-    // Define the path to the current folder
-    const commandsPath = node_path_1.default.join(foldersPath, folder);
-    // Read the names of all .ts files in the current folder
-    const commandFiles = node_fs_1.default
-        .readdirSync(commandsPath)
-        .filter((file) => file.endsWith('.ts'));
-    // Loop over each file in the current folder
-    // Grab the SlashCommandBuilder#toJSON() output of each command's data for deployment
-    // By using the async IIFE, the code block becomes an async function, allowing the use of the await keyword inside it
-    (async () => {
-        for (const file of commandFiles) {
-            // Define the path to the current file
-            const filePath = node_path_1.default.join(commandsPath, file);
-            // Import the command from the current file
-            const command = await Promise.resolve(`${filePath}`).then(s => __importStar(require(s)));
-            //If the command has both a "data" and "execute" property, add it to the commands Collection
-            if ('data' in command && 'execute' in command) {
-                client.commands.set(command.data.name, command);
-            }
-            else {
-                // If the command is missing a "data" or "execute" property, log a warning
-                console.log(`[WARNING] The command at ${filePath} is missing a required "data" or "execute" property`);
-            }
-        }
-    })();
-}
 // Define the path to the events folder
 const eventsPath = node_path_1.default.join(__dirname, 'events');
 const eventFiles = node_fs_1.default

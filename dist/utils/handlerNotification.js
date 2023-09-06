@@ -6,9 +6,6 @@ const voiceChannelUtils_1 = require("./voiceChannelUtils");
 const audioUtils_1 = require("./audioUtils");
 const voice_1 = require("@discordjs/voice");
 async function handlerNotification(app, SleepTightClient) {
-    const textChannelID = '1134812036673572889'; // Super Doraemon general channel
-    // const userXinada = '678385374195613706'; //Imperador Xinada
-    const userZikmix = '123605053335404547'; //Zikmix
     /**
      * Sets up an Express endpoint to handle notifications and send messages to a Discord channel.
      *
@@ -19,18 +16,24 @@ async function handlerNotification(app, SleepTightClient) {
         app.get(endpoint, async (req, res) => {
             // Get the current time in HH:mm:ss format.
             const currentTime = new Date().toLocaleTimeString();
+            // Text channel where the bot will send messages.
+            const channel = SleepTightClient.channels.cache.get(process.env.TEXT_CHANNEL_ID);
             const guild = SleepTightClient.guilds.cache.get(process.env.GUILD_ID);
-            const channel = SleepTightClient.channels.cache.get(textChannelID);
-            const memberZikmix = (0, voiceChannelUtils_1.fetchGuildMember)(guild, userZikmix);
-            const connection = (0, voice_1.getVoiceConnection)(guild.id);
-            // const voiceChannel = guild!.members.cache.get(userXinada)!.voice.channel;
+            // User ID of the user to kicked from the voice channel.
+            const sleepingUser = (0, voiceChannelUtils_1.fetchGuildMember)(guild, process.env.USER_ID);
             // Respond to the HTTP request indicating that the notification was sent to Discord.
             res.send(`${message}. Notification sent to Discord!`);
             console.log(`!${message}. Notification sent to Discord! ${currentTime}`);
             (0, sendChannelMessage_1.sendChannelMessage)(channel, message);
-            if ((0, voiceChannelUtils_1.isUserInVoiceChannel)(await memberZikmix)) {
+            if ((0, voiceChannelUtils_1.isUserInVoiceChannel)(await sleepingUser)) {
+                const voiceChannel = (await sleepingUser).voice.channel;
+                const connection = (0, voice_1.joinVoiceChannel)({
+                    channelId: voiceChannel.id,
+                    guildId: guild.id,
+                    adapterCreator: guild.voiceAdapterCreator,
+                });
                 (0, audioUtils_1.playAudio)(connection, './public/sounds/dormebem.mp3');
-                (0, voiceChannelUtils_1.removeUserFromVoiceChannel)(await memberZikmix);
+                (0, voiceChannelUtils_1.removeUserFromVoiceChannel)(await sleepingUser);
             }
         });
     }

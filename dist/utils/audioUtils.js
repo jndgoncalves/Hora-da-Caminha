@@ -7,6 +7,10 @@ exports.playAudio = void 0;
 const voice_1 = require("@discordjs/voice");
 const fs_1 = __importDefault(require("fs"));
 function playAudio(voiceConnection, audioPath) {
+    if (!voiceConnection) {
+        console.log('No voice connection');
+        return;
+    }
     // Create a new audio player instance
     const player = (0, voice_1.createAudioPlayer)();
     // Create an audio resource from the specified MP3 file using a readable stream
