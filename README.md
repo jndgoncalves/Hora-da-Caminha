@@ -1,6 +1,6 @@
 # SleepTight Discord Bot
 
-The SleepTight Discord bot is designed to monitor users in voice channels and ensure they don't fall asleep. If a user is detected to have fallen asleep, the bot sends a text message, plays a specific sound, and then removes the user from the voice channel. This bot enhances server interactions by providing a fun and interactive audio experience for users.
+The SleepTight Discord bot is designed to monitor user in voice channels fell asleep. If a user is detected to have fallen asleep, the bot sends a text message, plays a specific sound, and then removes the user from the voice channel. This bot enhances server interactions by providing a fun and interactive audio experience for users.
 
 ## Table of Contents
 
