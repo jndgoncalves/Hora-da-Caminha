@@ -1,13 +1,12 @@
-# Sleep Tight - Discord Bot
+# SleepTight Discord Bot
 
-A Discord bot designed to join a voice channel that a certain user has fallen asleep by joining and play a specific sound. This bot enhances server interactions by providing a fun and interactive audio experience for users.
+The SleepTight Discord bot is designed to monitor users in voice channels and ensure they don't fall asleep. If a user is detected to have fallen asleep, the bot sends a text message, plays a specific sound, and then removes the user from the voice channel. This bot enhances server interactions by providing a fun and interactive audio experience for users.
 
 ## Table of Contents
 
+- [How It Works](#how-it-works)
 - [Development & Configuration](#development--configuration)
-- [Features](#features)
 - [Setup & Installation](#setup--installation)
-- [Commands](#commands)
 - [Events](#events)
 - [Dependencies](#dependencies)
 - [Debugging with VS Code](#debugging-with-vs-code)
@@ -15,16 +14,23 @@ A Discord bot designed to join a voice channel that a certain user has fallen as
 - [License](#license)
 - [Contact](#contact)
 
+## How It Works
+
+The bot determines if a user has fallen asleep using a combination of wearable technology and mobile applications:
+
+- **Xiaomi Mi Band 6**: This is the primary wearable device used for sleep detection. While the bot has been tested with the Mi Band 6, it may also be compatible with other models.
+- **Notify for Mi Band**: This Android application detects when the Mi Band recognizes that the user has fallen asleep. Upon detection, it sends an intent signal.
+- **Tasker**: Another Android application that receives the intent from "Notify for Mi Band". Once Tasker receives the intent, it triggers an action - specifically, making an HTTP request to the local server where the bot is running.
+- **Bot Action**: Upon receiving the HTTP request from Tasker, the bot performs the following actions:
+  1. Sends a goodbye message to a specified text channel within a designated guild.
+  2. Removes the user from the voice channel.
+  3. Plays a "goodnight" sound.
+
 ## Development & Configuration
 
 - **TypeScript**: The bot is written in TypeScript, offering strong typing and OOP features.
 - **ESLint**: The code is linted using ESLint to ensure code quality and consistency.
 - **VS Code**: For developers using Visual Studio Code, there are specific configurations provided for a seamless development experience.
-
-## Features
-
-- **Join & Play**: The bot automatically joins a voice channel when a user joins and plays a designated sound.
-- **Interactive Commands**: Engage users with commands to control the bot's behavior.
 
 ## Setup & Installation
 
@@ -53,24 +59,25 @@ A Discord bot designed to join a voice channel that a certain user has fallen as
    ```bash
    docker-compose up
    ```
+6. **Wearable Device**
+   Ensure you have the Xiaomi Mi Band (or a compatible device) set up and paired with your Android device.
 
-## Commands
+7. **Notify for Mi Band**
+   Install the Notify for Mi Band application on your Android device.
+   Download and install the "Notify for Mi Band" application from here ([https://mibandnotify.com/](#)).
+   Ensure the app has the necessary permissions to access your Mi Band's data.
+   Important: Go to your phone's settings and make sure that "Notify for Mi Band" is allowed to run in the background and autostart on device boot.
 
-### Fun Commands
+8. **Tasker**
+   Download and install the Tasker application from here ([https://tasker.joaoapps.com/](#)).
+   Create an event, set action to "com.mc.miband.tasker.fellAsleep" (intent).
+   Then create task, set action to "HTTP Request" and fill in the following details: Method GET and URL http://[IP of the server where the bot is running]:3000/fellAsleep.
 
-- `!ping`: Checks the bot's responsiveness.
-- `!play`: Outputs "playing a sound..." in the text channel. (Note: This command was created as a test before implementing the event-based sound playing feature.)
-
-### Utility Commands
-
-- `!server`: Provides server information (name and total members).
-- `!user`: Provides information about the invoking user (tag and unique ID).
+   Important: Similarly, ensure Tasker is allowed to run in the background and autostart on device boot through your phone's settings.
 
 ## Events Handled
 
 - **ready**: Initializes the bot and logs a message to the console.
-- **interactionCreate**: Processes user interactions with server commands.
-- **joinVoiceChannel**: Handles users joining voice channels, triggering bot actions.
 
 ## Dependencies
 

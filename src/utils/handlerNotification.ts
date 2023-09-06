@@ -56,6 +56,6 @@ export async function handlerNotification(
   }
   registerEndpoint(
     '/sleep-notification',
-    `${(await sleepingUser).nickname}User has fallen asleep`
+    `${(await sleepingUser).nickname} has fallen asleep`
   );
 }
